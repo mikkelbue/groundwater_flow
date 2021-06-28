@@ -1,6 +1,6 @@
 from fenics import *
 
-class BaseProblem(NonlinearProblem):
+class MyNonlinearProblem(NonlinearProblem):
     def __init__(self, J, F, bcs):
         self.bilinear_form = J
         self.linear_form = F
@@ -17,7 +17,7 @@ class BaseProblem(NonlinearProblem):
         for bc in self.bcs:
             bc.apply(A)
             
-class PointSourceProblem(NonlinearProblem):
+class MyPointSourceProblem(NonlinearProblem):
     def __init__(self, J, F, bcs, pss):
         self.bilinear_form = J
         self.linear_form = F
@@ -38,7 +38,7 @@ class PointSourceProblem(NonlinearProblem):
             bc.apply(A)
 
 
-class CustomSolver(NewtonSolver):
+class MySolver(NewtonSolver):
     def __init__(self, mesh):
         NewtonSolver.__init__(self, mesh.mpi_comm(),
                               PETScKrylovSolver(), PETScFactory.instance())
