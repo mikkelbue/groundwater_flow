@@ -22,7 +22,7 @@ class GwFlowSolver:
         
     def refine_mesh(self):
         
-        distance = 10*self.mesh.rmin()
+        distance = 5*self.mesh.rmax()
         
         for location in self.parameters['pumping_locations']:
             cell_markers = MeshFunction("bool", self.mesh, 2)
