@@ -25,7 +25,7 @@ class GwFlowSolver:
         
         # this function is only called if there is pumping wells on the
         # domain. if so, the mesh will be refined around the wells.
-        distance = 5*self.mesh.rmax()
+        distance = self.mesh.hmax()
         
         for location in self.parameters['pumping_locations']:
             cell_markers = MeshFunction("bool", self.mesh, 2)
