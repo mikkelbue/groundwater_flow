@@ -70,6 +70,19 @@ class DefaultModel:
                                                   self.parameters['bbs_stdev'])
             self.solver.set_bottom_bounding_surface(self.bottom_bounding_surface.random_field)
             
+        if 'datapoints' in self.parameters.keys():
+            self.datapoints = self.parameters['datapoints']
+            
+        if 'solver_parameters' not in self.parameters.keys():
+            self.parameters['solver_parameters'] = None
+
+    def __call__(self, coefficients):
+        
+        # solve given the coefficients.
+        self.solve(coefficients)
+        
+        # return the data.
+        return self.get_data(self.datapoints)
             
     def solve(self, coefficients=None):
         
