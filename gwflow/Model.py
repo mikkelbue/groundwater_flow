@@ -210,6 +210,12 @@ class PickledModel(DefaultModel):
             # get the pickled bottom bounding surface.
             self.bottom_bounding_surface = self.bottom_bounding_surface = pickle_dict['bottom_bounding_surface']
             self.solver.set_bottom_bounding_surface(self.bottom_bounding_surface.random_field)
+            
+        if 'datapoints' in self.parameters.keys():
+            self.datapoints = self.parameters['datapoints']
+            
+        if 'solver_parameters' not in self.parameters.keys():
+            self.parameters['solver_parameters'] = None
         
 class ReducedModel(DefaultModel):
     def __init__(self, fine_model, resolution):
@@ -256,6 +262,12 @@ class ReducedModel(DefaultModel):
                                                   self.parameters['bbs_mean'],
                                                   self.parameters['bbs_stdev'])
             self.solver.set_bottom_bounding_surface(self.bottom_bounding_surface.random_field)
+            
+        if 'datapoints' in self.parameters.keys():
+            self.datapoints = self.parameters['datapoints']
+            
+        if 'solver_parameters' not in self.parameters.keys():
+            self.parameters['solver_parameters'] = None
         
     def plot_conductivity_eigenmode(self, index):
         # plot an KL eigenmode given the index.
